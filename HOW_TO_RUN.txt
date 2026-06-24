@@ -1,0 +1,162 @@
+================================================================
+   RESTAURANT DATABASE SYSTEM — COMPLETE SETUP GUIDE
+================================================================
+
+STEP 1 — EXTRACT THE PROJECT
+------------------------------
+1. Right click on Restaurant_DB_Management.zip
+2. Click "Extract All"
+3. Select Desktop and click Extract
+4. Open the extracted folder
+
+
+STEP 2 — INSTALL PYTHON
+-------------------------
+1. Open Start Menu → type PowerShell → open it
+2. Type this and press Enter:
+      python --version
+3. If you see Python 3.x.x → skip to Step 3
+4. If error → go to https://python.org/downloads
+5. Download and run the installer
+6. IMPORTANT: Check "Add Python to PATH" checkbox!
+7. Click Install Now → wait → Close
+8. Close PowerShell and open again
+
+
+STEP 3 — INSTALL MYSQL
+------------------------
+1. Go to https://dev.mysql.com/downloads/installer/
+2. Click Download on "MySQL Installer for Windows"
+3. Run the downloaded file
+4. Choose "Developer Default" → click Next → Next → Execute
+5. Wait for all items to install (takes 5-10 minutes)
+6. When asked for root password → set it to:   1234
+   (remember this password!)
+7. Keep clicking Next → Finish
+
+
+STEP 4 — ADD MYSQL TO PATH
+----------------------------
+1. Open File Explorer
+2. Go to:   C:\Program Files\MySQL\MySQL Server 8.0\bin
+3. Click the address bar at top → copy that path
+4. Click Start → type "Environment Variables" → open it
+5. Click "Environment Variables" button
+6. Under System Variables → click Path → click Edit
+7. Click New → paste the path you copied
+8. Click OK → OK → OK
+9. Close PowerShell and reopen it
+
+
+STEP 5 — OPEN POWERSHELL IN PROJECT FOLDER
+--------------------------------------------
+1. Open the Restaurant_DB_Management folder on Desktop
+2. Hold Shift + Right Click inside the folder
+3. Click "Open PowerShell window here"
+4. You will see:
+      PS C:\Users\YourName\Desktop\Restaurant_DB_Management>
+
+
+STEP 6 — CREATE DATABASE AND LOAD DATA
+----------------------------------------
+Type these one by one and press Enter after each:
+
+First open MySQL:
+   mysql -u root -p
+
+It asks password → type:   1234   → press Enter
+
+You will see:   mysql>
+
+Now type these one by one:
+   CREATE DATABASE restaurant_db;
+   USE restaurant_db;
+   source schema.sql;
+   exit;
+
+You will see lots of "Query OK" messages — that means it worked!
+
+
+STEP 7 — UPDATE PASSWORD IN CODE
+-----------------------------------
+1. Open restaurant_manager.py with Notepad
+2. Find these lines at the top:
+      DB_CONFIG = {
+          'host': 'localhost',
+          'user': 'root',
+          'password': 'password',
+          'database': 'restaurant_db'
+      }
+3. Change 'password' to '1234'
+   So it becomes:
+          'password': '1234',
+4. Click File → Save
+
+
+STEP 8 — INSTALL PYTHON LIBRARY
+---------------------------------
+Type this in PowerShell and press Enter:
+   pip install mysql-connector-python
+
+Wait until you see "Successfully installed"
+
+
+STEP 9 — RUN THE PROJECT
+--------------------------
+Type this and press Enter:
+   python restaurant_manager.py
+
+You will see output like this:
+
+   ===== MENU =====
+     [1] Veg Spring Rolls (Starters) - 120.0
+     [2] Chicken Tikka (Starters) - 220.0
+     [3] Paneer Butter Masala (Main Course) - 280.0
+     ...
+
+   ===== DAILY SALES =====
+     ...
+
+   ===== TOP SELLING ITEMS =====
+     ...
+
+   ===== LOW STOCK ALERT =====
+     All items sufficiently stocked.
+
+
+THAT IS IT! PROJECT IS RUNNING SUCCESSFULLY!
+
+
+WHAT THIS PROJECT SHOWS
+-------------------------
+- Full restaurant menu with categories and prices
+- Daily and weekly sales reports
+- Top selling food items
+- Inventory stock levels and low stock alerts
+- Staff performance reports
+- Table occupancy reports
+- Payment method breakdown
+
+
+COMMON ERRORS AND FIXES
+-------------------------
+Error: mysql not recognized
+Fix:  Redo Step 4 (add MySQL to PATH)
+
+Error: Access denied for user root
+Fix:  Check password in restaurant_manager.py
+
+Error: No module named mysql.connector
+Fix:  pip install mysql-connector-python
+
+Error: Unknown database restaurant_db
+Fix:  Redo Step 6
+
+Error: source schema.sql — file not found
+Fix:  Make sure you are in the correct folder in PowerShell
+      Type:  cd Desktop\Restaurant_DB_Management
+      Then try Step 6 again
+
+================================================================
+   If you see any red error → copy it and ask for help!
+================================================================
