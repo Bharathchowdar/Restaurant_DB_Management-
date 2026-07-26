@@ -1,6 +1,6 @@
 import mysql.connector
 from datetime import date
-
+ 
 DB_CONFIG = {
     'host': 'localhost',
     'user': 'root',
